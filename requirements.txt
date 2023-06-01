@@ -1,0 +1,4 @@
+asyncio~=3.4.3
+discord~=2.2.3
+aiohttp~=3.8.4
+beautifulsoup4~=4.12.2
