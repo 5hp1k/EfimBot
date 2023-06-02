@@ -23,7 +23,7 @@ class EfimBot(commands.Cog):
         if not os.path.exists("logs"):
             os.makedirs("logs")
 
-        log_file_path = f"logs/{author_id}.txt"
+        log_file_path = f"logs/{author_id}.log"
 
         with open(log_file_path, "a") as file:
             file.write(f"[{timestamp}] {author_name}: {message_content}\n"
