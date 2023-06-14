@@ -23,7 +23,7 @@ class EfimBot(commands.Cog):
         if not os.path.exists("logs"):
             os.makedirs("logs")
 
-        log_file_path = f"logs/{author_id}.txt"
+        log_file_path = f"logs/{author_id}.log"
 
         with open(log_file_path, "a") as file:
             file.write(f"[{timestamp}] {author_name}: {message_content}\n"
@@ -72,16 +72,22 @@ class EfimBot(commands.Cog):
                                'carburator', 'kartoshka', 'funny_animal',
                                'cabbage', 'coconut_doggy', 'ok_i_pull_up',
                                'caterpillar'])
-    async def send_capybara_image(self, ctx):
+    async def send_capybara_image(self, ctx, api_title=True):
         """Получение ботом изображения с капибарой посредством обращения к сервису с изображениями через api,
-        причем обращение асинхронно и происходит при помощи aiohttp."""
+        причем обращение асинхронно и происходит при помощи aiohttp. Также имеется возможность выбирать,
+        какой заголовок будет у изображения: один из рандомных локальных или полученный по API"""
         async with aiohttp.ClientSession() as session:
             async with session.get("https://api.capy.lol/v1/capybara?json=true") as response:
                 data = await response.json()
                 url = data['data']['url']
-                image = discord.Embed(title=random.choice(['балдеж-то какой', 'ok he pull up', 'какой же он крутой',
-                                                           'ему точно можно доверить огнестрельное оружие :)']),
-                                      color=discord.Color.random())
+
+                if api_title:
+                    title = data['data']['alt']
+                else:
+                    title = random.choice(['балдеж-то какой', 'ok he pull up', 'какой же он крутой',
+                                           'ему точно можно доверить огнестрельное оружие :)'])
+
+                image = discord.Embed(title=title, color=discord.Color.random())
                 image.set_image(url=url)
                 await ctx.send(embed=image)
                 await self.log_message(ctx, str(image.to_dict()))
