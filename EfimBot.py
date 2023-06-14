@@ -59,7 +59,10 @@ class EfimBot(commands.Cog):
                        f"3. //send_capybara_image (также можно использовать одну из следующиъ команд:\n" \
                        f"'capybara', 'capy', 'capybarka', 'carbonara', 'carburator', 'kartoshka', 'funny_animal',\n" \
                        f"'cabbage', 'coconut_doggy', 'ok_i_pull_up', 'caterpillar') " \
-                       f"- отправляет картинку с капибарой\n" \
+                       f"- отправляет картинку с капибарой, причем если указать параметр False," \
+                       f"то будет выведен один из следующих заголовков изображения:" \
+                       f"['балдеж-то какой', 'ok he pull up', 'какой же он крутой'," \
+                       f"ему точно можно доверить огнестрельное оружие :)']\n" \
                        f"4. //send_anecdote (также можно использовать одну из следующих команд:\n" \
                        f"'anecdote', 'anec', 'anekdot', 'anek') - случайный анекдот с anekdotov.net\n" \
                        f"5. //clear_messages (int) - удаляет указанное количество сообщений " \
